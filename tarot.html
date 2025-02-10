@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tarot Místico - Tu Destino en las Cartas</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            font-family: 'Georgia', serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .question-section {
+            margin: 20px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            max-width: 600px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .question-input {
+            width: 90%;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .question-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+            perspective: 1000px;
+        }
+
+        .card {
+            width: 180px;
+            height: 300px;
+            margin: auto;
+            perspective: 1000px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover:not(.flipped) {
+            transform: translateY(-10px);
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-front {
+            background: linear-gradient(45deg, #240046, #3c096c);
+            border: 2px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: #ffd700;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+
+        .card-back {
+            background: white;
+            transform: rotateY(180deg);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            color: #1a1a2e;
+            background: linear-gradient(135deg, #fff8e1, #ffe082);
+        }
+
+        .reading {
+            margin: 30px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            max-width: 800px;
+            display: none;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        button {
+            background: linear-gradient(45deg, #ffd700, #daa520);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #4a148c;
+        }
+
+        .card-image {
+            width: 140px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #4a148c;
+        }
+
+        .instructions {
+            color: #ffd700;
+            margin: 20px 0;
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        .selected-count {
+            color: #ffd700;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .highlight {
+            animation: pulse 2s infinite;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .question-input {
+                font-size: 1.2em;
+            }
+
+            .cards-container {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Cartas más pequeñas */
+                gap: 10px;
+            }
+
+            .card {
+                width: 150px;
+                height: 250px;
+            }
+
+            .card-title {
+                font-size: 16px;
+            }
+
+            .card-image {
+                width: 120px;
+                height: 180px;
+            }
+
+            .reading {
+                font-size: 1.2em; /* Texto de la lectura más grande */
+            }
+
+            /* Otros elementos de texto que desees agrandar */
+            .instructions, .selected-count, button {
+                font-size: 1.1em; /* Ajusta el tamaño según tus preferencias */
+            }
+            #questionInput{
+                font-size: 20px!important;
+            }
+            .question-section{
+                width: 100%!important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔮 Tarot Místico</h1>
+        
+        <div class="question-section">
+            <p class="instructions">Concéntrate en tu pregunta y déjate guiar por tu intuición...</p>
+            <input type="text" id="questionInput" class="question-input" 
+                   placeholder="¿Qué deseas saber sobre tu destino?" required>
+            <button id="startReadingBtn">Consultar el Oráculo</button>
+        </div>
+
+        <p class="selected-count" id="selectedCount"></p>
+        <div class="cards-container" id="cardsContainer"></div>
+        <div class="reading" id="reading"></div>
+    </div>
+
+    <script>
+    const tarotCards =  [
+    {
+        "name": "El Mago",
+        "image": "https://i.pinimg.com/736x/45/f3/ad/45f3ada99382a201c430adbdb802deed.jpg",
+        "keywords": ["poder", "habilidad", "acción", "manifestación", "creatividad", "confianza", "iniciativa", "inteligencia", "voluntad", "transformación", "destreza", "inspiración", "liderazgo"],
+        "interpretations": {
+            "amor": "El poder del amor verdadero se manifestará en tu vida.",
+            "trabajo": "Tus habilidades únicas te llevarán al éxito.",
+            "salud": "Tienes el poder de transformar tu bienestar.",
+            "general": "Es momento de manifestar tus deseos más profundos.",
+            "espiritualidad": "Tu intuición estará más fuerte que nunca.",
+            "destino": "El camino de la vida te llevará a un nuevo horizonte.",
+            "familia": "Un evento especial unirá a tu familia.",
+            "amistad": "Una amistad valiosa se fortalecerá.",
+            "dinero": "Un giro financiero inesperado te espera.",
+            "suerte": "Las circunstancias están a tu favor.",
+            "proyectos": "Tus ideas tomarán forma y se materializarán pronto.",
+            "obstáculos": "Superarás cualquier reto con inteligencia y determinación.",
+            "autoestima": "Confía en ti mismo, eres capaz de grandes cosas.",
+            "viajes": "Un viaje importante abrirá nuevas puertas.",
+            "aprendizaje": "Es el momento ideal para adquirir nuevos conocimientos.",
+            "carrera": "Un ascenso o reconocimiento está en camino.",
+            "negocios": "Una oportunidad de negocio podría cambiar tu futuro.",
+            "relaciones": "Tendrás el poder de influir positivamente en los demás.",
+            "metas": "Lo que deseas está más cerca de lo que crees.",
+            "innovación": "Tu creatividad será clave para avanzar.",
+            "oportunidades": "Estás en el momento perfecto para aprovechar nuevas oportunidades."
+        }
+    },
+    {
+        "name": "La Luna",
+        "image": "https://i.pinimg.com/736x/52/ab/05/52ab056f6d09ba5030d186f9109be5af.jpg",
+        "keywords": ["intuición", "misterio", "sueños", "emociones", "confusión", "revelaciones", "engaño", "subconsciente", "imaginación", "señales", "dudas", "secretos"],
+        "interpretations": {
+            "amor": "Los sentimientos ocultos saldrán a la luz.",
+            "trabajo": "Confía en tu intuición para tomar decisiones.",
+            "salud": "Escucha las señales de tu cuerpo.",
+            "general": "Los misterios de tu vida se revelarán pronto.",
+            "espiritualidad": "Una señal del universo te guiará en tu camino.",
+            "destino": "Un cambio de rumbo te traerá nuevas oportunidades.",
+            "familia": "La armonía familiar será clave en los próximos días.",
+            "amistad": "Recibirás apoyo de alguien inesperado.",
+            "dinero": "La abundancia está más cerca de lo que crees.",
+            "suerte": "Las señales están ahí, solo debes interpretarlas bien.",
+            "proyectos": "Es momento de aclarar tus ideas antes de avanzar.",
+            "obstáculos": "No todo es lo que parece, mantente atento.",
+            "autoestima": "Confía en tus corazonadas, tu intuición es tu mejor guía.",
+            "viajes": "Un viaje traerá respuestas inesperadas.",
+            "aprendizaje": "Presta atención a los sueños, contienen mensajes ocultos.",
+            "carrera": "Un secreto en el trabajo podría salir a la luz.",
+            "negocios": "Sé prudente, no todo es tan seguro como parece.",
+            "relaciones": "Alguien cercano podría no estar diciendo la verdad.",
+            "metas": "Reevalúa tus objetivos, algo importante está oculto.",
+            "claridad": "Es momento de enfrentar las verdades que has evitado.",
+            "engaño": "Cuidado con personas que podrían no ser sinceras contigo."
+        }
+    },
+    {
+        "name": "La Estrella",
+        "image": "https://ouch-cdn2.icons8.com/l2I6OLrbj92Mxq6kiDjRn9HeD9GN4shAowiIhnFzBqc/rs:fit:265:456/extend:false/wm:1:re:0:0:0.8/wmid:ouch2/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvODg3/L2QxNDlhODE3LTM0/ZGYtNGU2Yi04Y2Yw/LTA4ODIyYjQ1NTA1/Yi5wbmc.png",
+        "keywords": ["esperanza", "inspiración", "guía", "renovación", "optimismo", "oportunidad", "claridad", "iluminación", "visión", "propósito", "motivación", "confianza"],
+        "interpretations": {
+            "amor": "Un nuevo amor iluminará tu camino.",
+            "trabajo": "Nuevas oportunidades brillan en tu horizonte.",
+            "salud": "La sanación y renovación están en camino.",
+            "general": "La esperanza guiará tus pasos hacia el éxito.",
+            "espiritualidad": "Es el momento ideal para reflexionar y meditar.",
+            "destino": "La suerte jugará un papel importante en tu futuro cercano.",
+            "familia": "Un consejo de un ser querido te será muy útil.",
+            "amistad": "Es un buen momento para reconectar con viejos amigos.",
+            "dinero": "Un nuevo ingreso podría sorprenderte pronto.",
+            "suerte": "El universo conspira a tu favor, aprovecha el momento.",
+            "proyectos": "Tu visión optimista atraerá grandes oportunidades.",
+            "obstáculos": "La luz siempre llega después de la oscuridad.",
+            "autoestima": "Eres una fuente de inspiración para los demás.",
+            "viajes": "Un viaje será una experiencia renovadora.",
+            "aprendizaje": "Descubrirás una pasión que te llenará de energía.",
+            "carrera": "El reconocimiento por tu esfuerzo está por llegar.",
+            "negocios": "Un socio confiable aparecerá en el momento justo.",
+            "relaciones": "Las conexiones con los demás se volverán más significativas.",
+            "metas": "Este es el momento ideal para perseguir tus sueños.",
+            "crecimiento": "Tu desarrollo personal dará un gran salto.",
+            "realización": "Tu esfuerzo finalmente dará frutos."
+        }
+    }
+];
+
+        let selectedCards = 0;
+        const maxCards = 2;
+        let shuffledCards = [];
+        let userQuestion = '';
+
+        const questionInput = document.getElementById('questionInput');
+        const startReadingBtn = document.getElementById('startReadingBtn');
+        const selectedCountDisplay = document.getElementById('selectedCount');
+
+        function updateSelectedCount() {
+            selectedCountDisplay.textContent = `Selecciona ${maxCards - selectedCards} carta${maxCards - selectedCards !== 1 ? 's' : ''} más`;
+        }
+
+        function getQuestionType(question) {
+    const lowerQuestion = question.toLowerCase();
+    let categories = [];
+
+    const keywords = lowerQuestion.split(/\s+/);
+
+    keywords.forEach(keyword => {
+        if (keyword.includes('amor') && !categories.includes('amor')) categories.push('amor');
+        if (keyword.includes('trabajo') && !categories.includes('trabajo')) categories.push('trabajo');
+        if (keyword.includes('salud') && !categories.includes('salud')) categories.push('salud');
+        if (keyword.includes('espiritualidad') && !categories.includes('espiritualidad')) categories.push('espiritualidad');
+        if (keyword.includes('destino') && !categories.includes('destino')) categories.push('destino');
+        if (keyword.includes('familia') && !categories.includes('familia')) categories.push('familia');
+        if (keyword.includes('amistad') && !categories.includes('amistad')) categories.push('amistad');
+        if (keyword.includes('dinero') && !categories.includes('dinero')) categories.push('dinero');
+        if (keyword.includes('suerte') && !categories.includes('suerte')) categories.push('suerte');
+        if (keyword.includes('proyectos') && !categories.includes('proyectos')) categories.push('proyectos');
+        if (keyword.includes('obstáculos') && !categories.includes('obstáculos')) categories.push('obstáculos');
+        if (keyword.includes('autoestima') && !categories.includes('autoestima')) categories.push('autoestima');
+        if (keyword.includes('viajes') && !categories.includes('viajes')) categories.push('viajes');
+        if (keyword.includes('aprendizaje') && !categories.includes('aprendizaje')) categories.push('aprendizaje');
+        if (keyword.includes('metas') && !categories.includes('metas')) categories.push('metas');
+        if (keyword.includes('crecimiento') && !categories.includes('crecimiento')) categories.push('crecimiento');
+        if (keyword.includes('realización') && !categories.includes('realización')) categories.push('realización');
+    });
+
+    return categories.length > 0 ? categories : ['general'];
+}
+
+        function startReading() {
+            userQuestion = questionInput.value.trim();
+            if (userQuestion.length < 5) return;
+
+            shuffledCards = [...tarotCards]
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 6);
+            
+            const cardsContainer = document.getElementById('cardsContainer');
+            cardsContainer.innerHTML = '';
+            selectedCards = 0;
+            document.getElementById('reading').style.display = 'none';
+            questionInput.disabled = true;
+            startReadingBtn.disabled = true;
+            updateSelectedCount();
+
+            shuffledCards.forEach((_, index) => {
+                const card = createCard(index);
+                cardsContainer.appendChild(card);
+            });
+        }
+
+        function createCard(index) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-inner">
+                    <div class="card-front">✧</div>
+                    <div class="card-back">
+                        <img src="${shuffledCards[index].image}" alt="${shuffledCards[index].name}" class="card-image">
+                        <div class="card-title">${shuffledCards[index].name}</div>
+                    </div>
+                </div>
+            `;
+
+            card.addEventListener('click', () => {
+                if (!card.classList.contains('flipped') && selectedCards < maxCards) {
+                    card.classList.add('flipped');
+                    selectedCards++;
+                    updateSelectedCount();
+
+                    if (selectedCards === maxCards) {
+                        setTimeout(showReading, 1000);
+                    }
+                }
+            });
+
+            return card;
+        }
+
+        function generatePersonalizedReading(cards, questionTypes) {
+    const readingIntros = [
+        "Las cartas han revelado un mensaje poderoso para ti...",
+        "Los arcanos antiguos hablan con claridad...",
+        "El tarot muestra un camino iluminador...",
+        "Las energías místicas se alinean para mostrarte..."
+    ];
+
+    const combinations = {
+        amor: [
+            "Tu corazón se encuentra en un momento crucial",
+            "El amor te reserva sorpresas especiales",
+            "Tus relaciones están en transformación"
+        ],
+        trabajo: [
+            "Tu camino profesional está en evolución",
+            "Nuevas oportunidades se manifestarán pronto",
+            "Tu carrera tomará un giro importante"
+        ],
+        salud: [
+            "Tu energía vital está en transformación",
+            "Un cambio positivo se acerca a tu bienestar",
+            "La sanación viene de formas inesperadas"
+        ],
+        general: [
+            "El universo tiene un mensaje importante para ti",
+            "Las energías cósmicas se alinean a tu favor",
+            "Un cambio significativo se acerca a tu vida"
+        ],
+        dinero: [
+            "Un giro financiero inesperado te espera",
+            "La abundancia está más cerca de lo que crees",
+            "Un nuevo ingreso podría sorprenderte pronto"
+        ],
+        amistad: [
+            "Una amistad valiosa se fortalecerá",
+            "Recibirás apoyo de alguien inesperado",
+            "Es un buen momento para reconectar con viejos amigos"
+        ],
+        familia: [
+            "Un evento especial unirá a tu familia",
+            "La armonía familiar será clave en los próximos días",
+            "Un consejo de un ser querido te será muy útil"
+        ],
+        destino: [
+            "El camino de la vida te llevará a un nuevo horizonte",
+            "Un cambio de rumbo te traerá nuevas oportunidades",
+            "La suerte jugará un papel importante en tu futuro cercano"
+        ],
+        espiritualidad: [
+            "Tu intuición estará más fuerte que nunca",
+            "Una señal del universo te guiará en tu camino",
+            "Es el momento ideal para reflexionar y meditar"
+        ]
+    };
+
+    const intro = readingIntros[Math.floor(Math.random() * readingIntros.length)];
+    let reading = `${intro}\n\n`;
+    reading += `Sobre tu pregunta: "${userQuestion}"\n\n`;
+
+    questionTypes.forEach(questionType => {
+        reading += `Para la categoría de ${questionType}:\n`;
+
+        cards.forEach(card => { // Iterar sobre cada carta
+            const combination = combinations[questionType][Math.floor(Math.random() * combinations[questionType].length)]; // Nueva combinación para cada carta
+            reading += `${combination}. `;
+            reading += `${card.interpretations[questionType] ? card.interpretations[questionType] + '. ' : ''}`;
+        });
+
+        reading += '\n\n';
+    });
+
+    return reading;
+}
+
+
+        function showReading() {
+            const reading = document.getElementById('reading');
+    reading.style.display = 'block';
+
+    const questionTypes = getQuestionType(userQuestion);
+    const selectedCards = Array.from(document.querySelectorAll('.card.flipped'))
+        .map(card => {
+            const index = Array.from(document.querySelectorAll('.card')).indexOf(card);
+            return shuffledCards[index]; // Corrección importante: usar el índice correcto
+        });
+
+    const personalizedReading = generatePersonalizedReading(selectedCards, questionTypes);
+
+    reading.innerHTML = `
+        <h2 style="color: #ffd700; text-align: center;">Tu Lectura del Tarot</h2>
+        <p style="font-size: 18px;">${personalizedReading}</p>
+        <div style="text-align: center;">
+            <button onclick="resetReading()">Nueva Consulta</button>
+        </div>
+    `;
+        }
+
+        function resetReading() {
+            questionInput.value = '';
+            userQuestion = '';
+            questionInput.disabled = false;
+            startReadingBtn.disabled = false;
+            document.getElementById('reading').style.display = 'none';
+            document.getElementById('cardsContainer').innerHTML = '';
+            selectedCountDisplay.textContent = '';
+        }
+
+        startReadingBtn.addEventListener('click', startReading);
+        questionInput.addEventListener('input', () => {
+            startReadingBtn.disabled = questionInput.value.trim().length < 5;
+        });
+    </script>
+</body>
+</html>
