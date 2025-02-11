@@ -57,7 +57,7 @@
 
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
             margin: 30px 0;
             perspective: 1000px;
@@ -258,6 +258,115 @@
     <script>
     const tarotCards =  [
     {
+        "name": "La Luna",
+        "image": "https://miistico.com/wp-content/uploads/2021/12/carta-la-luna-tarot.jpeg",
+        "keywords": ["intuición", "misterio", "sueños", "emociones", "confusión", "revelaciones", "engaño", "subconsciente", "imaginación", "señales", "dudas", "secretos"],
+        "interpretations": {
+            "amor": "Los sentimientos ocultos saldrán a la luz.",
+            "trabajo": "Confía en tu intuición para tomar decisiones.",
+            "salud": "Escucha las señales de tu cuerpo.",
+            "general": "Los misterios de tu vida se revelarán pronto.",
+            "espiritualidad": "Una señal del universo te guiará en tu camino.",
+            "destino": "Un cambio de rumbo te traerá nuevas oportunidades.",
+            "familia": "La armonía familiar será clave en los próximos días.",
+            "amistad": "Recibirás apoyo de alguien inesperado.",
+            "dinero": "La abundancia está más cerca de lo que crees.",
+            "suerte": "Las señales están ahí, solo debes interpretarlas bien.",
+            "proyectos": "Es momento de aclarar tus ideas antes de avanzar.",
+            "obstáculos": "No todo es lo que parece, mantente atento.",
+            "autoestima": "Confía en tus corazonadas, tu intuición es tu mejor guía.",
+            "viajes": "Un viaje traerá respuestas inesperadas.",
+            "aprendizaje": "Presta atención a los sueños, contienen mensajes ocultos.",
+            "carrera": "Un secreto en el trabajo podría salir a la luz.",
+            "negocios": "Sé prudente, no todo es tan seguro como parece.",
+            "relaciones": "Alguien cercano podría no estar diciendo la verdad.",
+            "metas": "Reevalúa tus objetivos, algo importante está oculto.",
+            "claridad": "Es momento de enfrentar las verdades que has evitado.",
+            "engaño": "Cuidado con personas que podrían no ser sinceras contigo.",
+            "riesgo":"A veces hay que arriesgar para ganar.",
+            "pasion":"Sigue tu corazón y haz lo que te apasiona.",
+        }
+    },
+    {
+        "name": "El Sol",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg",
+        "keywords": ["alegría", "positivismo", "éxito", "vitalidad", "claridad"],
+        "interpretations": {
+            "amor": "Un período de felicidad y armonía en el amor.",
+            "trabajo": "El éxito y el reconocimiento están a tu alcance.",
+            "salud": "La vitalidad y la energía te acompañan.",
+            "general": "Un tiempo de alegría y positividad en tu vida.",
+            "espiritualidad": "Tu espíritu brilla con fuerza.",
+            "dinero": "La prosperidad está en tu camino.",
+            "amistad": "Las relaciones amistosas florecen.",
+            "familia": "La armonía familiar es evidente.",
+            "crecimiento": "Tu desarrollo personal está en su apogeo.",
+            "claridad": "La claridad mental te ayudará a tomar decisiones importantes.",
+            "proyectos": "Tus proyectos avanzarán con éxito.",
+            "viajes": "Un viaje lleno de alegría y descubrimientos.",
+            "autoestima": "Te sentirás seguro y confiado.",
+            "suerte": "La buena suerte te acompaña.",
+            "obstáculos": "Superarás cualquier obstáculo con facilidad.",
+            "relaciones": "Las relaciones personales se fortalecerán.",
+            "metas": "Alcanzarás tus metas con éxito.",
+            "inspiración": "Te sentirás inspirado y motivado.",
+            "oportunidades": "Nuevas oportunidades se presentarán.",
+            "riesgo":"Sal de tu zona de confort y atrévete a probar cosas nuevas.",
+            "pasion":"La pasión es el motor de tus sueños.",
+            "muerte":"La muerte no es el final, sino una transición.",
+            "dejar":"La muerte no es el final, sino una transición."
+        }
+    },
+    {
+        "name": "La Rueda de la Fortuna",
+        "image": "https://wjplayingcard.com/wp-content/uploads/2024/06/The-Upright-Tarot-Card-Wheel-Of-Fortune-600x988-1.webp",
+        "keywords": ["ciclos", "cambios", "destino", "oportunidades", "giros"],
+        "interpretations": {
+            "amor": "Los ciclos del amor te traerán nuevas experiencias.",
+            "trabajo": "Prepárate para cambios y nuevas oportunidades.",
+            "salud": "Los ciclos de tu salud están en movimiento.",
+            "general": "El destino te presenta nuevas oportunidades.",
+            "espiritualidad": "Un cambio espiritual se avecina.",
+            "dinero": "Las finanzas pueden fluctuar.",
+            "amistad": "Nuevas amistades están en el horizonte.",
+            "familia": "Cambios importantes en la dinámica familiar.",
+            "crecimiento": "Tu desarrollo personal está en constante cambio.",
+            "claridad": "La claridad mental te ayudará a adaptarte a los cambios.",
+            "proyectos": "Tus proyectos pueden tomar un nuevo rumbo.",
+            "viajes": "Un viaje inesperado puede cambiar tu perspectiva.",
+            "autoestima": "Confía en tu capacidad para adaptarte.",
+            "suerte": "La suerte puede cambiar en cualquier momento.",
+            "obstáculos": "Los obstáculos pueden convertirse en oportunidades.",
+            "relaciones": "Las relaciones pueden experimentar cambios significativos.",
+            "metas": "Tus metas pueden cambiar con el tiempo.",
+            "inspiración": "Encuentra inspiración en los cambios.",
+            "oportunidades": "Aprovecha las oportunidades que se presenten.",
+            "riesgo":"Evalúa los riesgos y toma decisiones informadas.",
+            "pasion":"Encuentra aquello que te enciende y te llena de energía.",
+            "murte":"Un final es el comienzo de algo nuevo.",
+            "dejar":"Un final es el comienzo de algo nuevo."
+        }
+    },
+    {
+        "name": "El Loco",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-8fQT7Bb3J3ynd6noeqxjST1w-OJgNTHsCw&s",
+        "keywords": ["poder", "habilidad", "acción", "manifestación", "creatividad", "confianza", "iniciativa", "inteligencia", "voluntad", "transformación", "destreza", "inspiración", "liderazgo"],
+        "interpretations": {
+            "amor": "El amor te llevará a nuevas aventuras.",
+            "trabajo": "Es momento de tomar riesgos en tu carrera.",
+            "salud": "Tu salud se beneficiará de nuevas actividades.",
+            "general": "La vida te invita a explorar lo desconocido.",
+            "espiritualidad": "Tu espíritu busca nuevas experiencias.",
+            "dinero": "Las inversiones arriesgadas pueden ser fructíferas.",
+            "amistad": "Nuevas amistades te esperan.",
+            "familia": "La familia te apoyará en tus nuevas aventuras.",
+            "riesgo":"No tengas miedo de fracasar, aprende de tus errores.",
+            "pasion":"La pasión te llevará a lugares increíbles.",
+            "muerte":"Acepta los ciclos de la vida y aprende a renacer.",
+            "dejar":"Acepta los ciclos de la vida y aprende a renacer.",
+        }
+    },
+    {
         "name": "El Mago",
         "image": "https://i.pinimg.com/736x/45/f3/ad/45f3ada99382a201c430adbdb802deed.jpg",
         "keywords": ["poder", "habilidad", "acción", "manifestación", "creatividad", "confianza", "iniciativa", "inteligencia", "voluntad", "transformación", "destreza", "inspiración", "liderazgo"],
@@ -282,7 +391,11 @@
             "relaciones": "Tendrás el poder de influir positivamente en los demás.",
             "metas": "Lo que deseas está más cerca de lo que crees.",
             "innovación": "Tu creatividad será clave para avanzar.",
-            "oportunidades": "Estás en el momento perfecto para aprovechar nuevas oportunidades."
+            "oportunidades": "Estás en el momento perfecto para aprovechar nuevas oportunidades.",
+            "riesgo":"Los mayores logros suelen estar al otro lado del miedo.",
+            "pasion":"No tengas miedo de expresar tu pasión al mundo.",
+            "muerte":"La transformación y el cambio son inevitables.",
+            "dejar":"La transformación y el cambio son inevitables.",
         }
     },
     {
@@ -310,7 +423,11 @@
             "relaciones": "Alguien cercano podría no estar diciendo la verdad.",
             "metas": "Reevalúa tus objetivos, algo importante está oculto.",
             "claridad": "Es momento de enfrentar las verdades que has evitado.",
-            "engaño": "Cuidado con personas que podrían no ser sinceras contigo."
+            "engaño": "Cuidado con personas que podrían no ser sinceras contigo.",
+            "riesgo":"Sal de tu zona de confort y atrévete a probar cosas nuevas.",
+            "pasion":"Encuentra aquello que te enciende y te llena de energía.",
+            "muerte":"Es momento de dejar ir el pasado y abrirte a nuevas oportunidades.",
+            "dejar":"Es momento de dejar ir el pasado y abrirte a nuevas oportunidades.",
         }
     },
     {
@@ -338,26 +455,30 @@
             "relaciones": "Las conexiones con los demás se volverán más significativas.",
             "metas": "Este es el momento ideal para perseguir tus sueños.",
             "crecimiento": "Tu desarrollo personal dará un gran salto.",
-            "realización": "Tu esfuerzo finalmente dará frutos."
+            "realización": "Tu esfuerzo finalmente dará frutos.",
+            "riesgo":"A veces hay que arriesgar para ganar.",
+            "pasion":"Sigue tu corazón y haz lo que te apasiona.",
+            "muerte":"Un final es el comienzo de algo nuevo.",
+            "dejar":"Un final es el comienzo de algo nuevo.",
         }
     }
-];
+    ];
 
-        let selectedCards = 0;
-        const maxCards = 2;
-        let shuffledCards = [];
-        let userQuestion = '';
+    let selectedCards = 0;
+    const maxCards = 3;
+    let shuffledCards = [];
+    let userQuestion = '';
 
-        const questionInput = document.getElementById('questionInput');
-        const startReadingBtn = document.getElementById('startReadingBtn');
-        const selectedCountDisplay = document.getElementById('selectedCount');
+    const questionInput = document.getElementById('questionInput');
+    const startReadingBtn = document.getElementById('startReadingBtn');
+    const selectedCountDisplay = document.getElementById('selectedCount');
 
-        function updateSelectedCount() {
-            selectedCountDisplay.textContent = `Selecciona ${maxCards - selectedCards} carta${maxCards - selectedCards !== 1 ? 's' : ''} más`;
-        }
+    function updateSelectedCount() {
+        selectedCountDisplay.textContent = `Selecciona ${maxCards - selectedCards} carta${maxCards - selectedCards !== 1 ? 's' : ''} más`;
+    }
 
-        function getQuestionType(question) {
-    const lowerQuestion = question.toLowerCase();
+    function getQuestionType(question) {
+        const lowerQuestion = question.toLowerCase();
     let categories = [];
 
     const keywords = lowerQuestion.split(/\s+/);
@@ -383,170 +504,122 @@
     });
 
     return categories.length > 0 ? categories : ['general'];
-}
+    }
 
-        function startReading() {
-            userQuestion = questionInput.value.trim();
-            if (userQuestion.length < 5) return;
+    function startReading() {
+        userQuestion = questionInput.value.trim();
+        if (userQuestion.length < 5) return;
 
-            shuffledCards = [...tarotCards]
-                .sort(() => Math.random() - 0.5)
-                .slice(0, 6);
-            
-            const cardsContainer = document.getElementById('cardsContainer');
-            cardsContainer.innerHTML = '';
-            selectedCards = 0;
-            document.getElementById('reading').style.display = 'none';
-            questionInput.disabled = true;
-            startReadingBtn.disabled = true;
-            updateSelectedCount();
+        shuffledCards = [...tarotCards]
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 10); // Cambia este número para mostrar más cartas
+        
+        const cardsContainer = document.getElementById('cardsContainer');
+        cardsContainer.innerHTML = '';
+        selectedCards = 0;
+        document.getElementById('reading').style.display = 'none';
+        questionInput.disabled = true;
+        startReadingBtn.disabled = true;
+        updateSelectedCount();
 
-            shuffledCards.forEach((_, index) => {
-                const card = createCard(index);
-                cardsContainer.appendChild(card);
-            });
-        }
+        shuffledCards.forEach((_, index) => {
+            const card = createCard(index);
+            cardsContainer.appendChild(card);
+        });
+    }
 
-        function createCard(index) {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-                <div class="card-inner">
-                    <div class="card-front">✧</div>
-                    <div class="card-back">
-                        <img src="${shuffledCards[index].image}" alt="${shuffledCards[index].name}" class="card-image">
-                        <div class="card-title">${shuffledCards[index].name}</div>
-                    </div>
+    function createCard(index) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <div class="card-inner">
+                <div class="card-front">✧</div>
+                <div class="card-back">
+                    <img src="${shuffledCards[index].image}" alt="${shuffledCards[index].name}" class="card-image">
+                    <div class="card-title">${shuffledCards[index].name}</div>
                 </div>
-            `;
+            </div>
+        `;
 
-            card.addEventListener('click', () => {
-                if (!card.classList.contains('flipped') && selectedCards < maxCards) {
-                    card.classList.add('flipped');
-                    selectedCards++;
-                    updateSelectedCount();
+        card.addEventListener('click', () => {
+            if (!card.classList.contains('flipped') && selectedCards < maxCards) {
+                card.classList.add('flipped');
+                selectedCards++;
+                updateSelectedCount();
 
-                    if (selectedCards === maxCards) {
-                        setTimeout(showReading, 1000);
-                    }
+                if (selectedCards === maxCards) {
+                    setTimeout(showReading, 1000);
+                }
+            }
+        });
+
+        return card;
+    }
+
+    function generatePersonalizedReading(cards, questionTypes) {
+        const interpretations = {};
+
+        cards.forEach(card => {
+            questionTypes.forEach(type => {
+                if (!interpretations[type]) {
+                    interpretations[type] = new Set();
+                }
+                const interpretation = card.interpretations[type];
+                if (interpretation) {
+                    interpretations[type].add(interpretation);
                 }
             });
-
-            return card;
-        }
-
-        function generatePersonalizedReading(cards, questionTypes) {
-    const readingIntros = [
-        "Las cartas han revelado un mensaje poderoso para ti...",
-        "Los arcanos antiguos hablan con claridad...",
-        "El tarot muestra un camino iluminador...",
-        "Las energías místicas se alinean para mostrarte..."
-    ];
-
-    const combinations = {
-        amor: [
-            "Tu corazón se encuentra en un momento crucial",
-            "El amor te reserva sorpresas especiales",
-            "Tus relaciones están en transformación"
-        ],
-        trabajo: [
-            "Tu camino profesional está en evolución",
-            "Nuevas oportunidades se manifestarán pronto",
-            "Tu carrera tomará un giro importante"
-        ],
-        salud: [
-            "Tu energía vital está en transformación",
-            "Un cambio positivo se acerca a tu bienestar",
-            "La sanación viene de formas inesperadas"
-        ],
-        general: [
-            "El universo tiene un mensaje importante para ti",
-            "Las energías cósmicas se alinean a tu favor",
-            "Un cambio significativo se acerca a tu vida"
-        ],
-        dinero: [
-            "Un giro financiero inesperado te espera",
-            "La abundancia está más cerca de lo que crees",
-            "Un nuevo ingreso podría sorprenderte pronto"
-        ],
-        amistad: [
-            "Una amistad valiosa se fortalecerá",
-            "Recibirás apoyo de alguien inesperado",
-            "Es un buen momento para reconectar con viejos amigos"
-        ],
-        familia: [
-            "Un evento especial unirá a tu familia",
-            "La armonía familiar será clave en los próximos días",
-            "Un consejo de un ser querido te será muy útil"
-        ],
-        destino: [
-            "El camino de la vida te llevará a un nuevo horizonte",
-            "Un cambio de rumbo te traerá nuevas oportunidades",
-            "La suerte jugará un papel importante en tu futuro cercano"
-        ],
-        espiritualidad: [
-            "Tu intuición estará más fuerte que nunca",
-            "Una señal del universo te guiará en tu camino",
-            "Es el momento ideal para reflexionar y meditar"
-        ]
-    };
-
-    const intro = readingIntros[Math.floor(Math.random() * readingIntros.length)];
-    let reading = `${intro}\n\n`;
-    reading += `Sobre tu pregunta: "${userQuestion}"\n\n`;
-
-    questionTypes.forEach(questionType => {
-        reading += `Para la categoría de ${questionType}:\n`;
-
-        cards.forEach(card => { // Iterar sobre cada carta
-            const combination = combinations[questionType][Math.floor(Math.random() * combinations[questionType].length)]; // Nueva combinación para cada carta
-            reading += `${combination}. `;
-            reading += `${card.interpretations[questionType] ? card.interpretations[questionType] + '. ' : ''}`;
         });
 
-        reading += '\n\n';
+        let reading = 'Las cartas han revelado un mensaje poderoso para ti...';
+        reading += `<br>Sobre tu pregunta: "${userQuestion}"`;
+
+        Object.keys(interpretations).forEach(type => {
+            reading += `<br>Para la categoría de ${type}: `;
+            interpretations[type].forEach(interpretation => {
+                reading += `${interpretation}. `;
+            });
+        });
+
+        return reading;
+    }
+
+    function showReading() {
+        const reading = document.getElementById('reading');
+        reading.style.display = 'block';
+
+        const questionTypes = getQuestionType(userQuestion);
+        const selectedCards = Array.from(document.querySelectorAll('.card.flipped'))
+            .map(card => {
+                const index = Array.from(document.querySelectorAll('.card')).indexOf(card);
+                return shuffledCards[index];
+            });
+
+        const personalizedReading = generatePersonalizedReading(selectedCards, questionTypes);
+
+        reading.innerHTML = `
+            <h2 style="color: #ffd700; text-align: center;">Tu Lectura del Tarot</h2>
+            <p style="font-size: 18px;">${personalizedReading}</p>
+            <div style="text-align: center;">
+                <button onclick="resetReading()">Nueva Consulta</button>
+            </div>
+        `;
+    }
+
+    function resetReading() {
+        questionInput.value = '';
+        userQuestion = '';
+        questionInput.disabled = false;
+        startReadingBtn.disabled = false;
+        document.getElementById('reading').style.display = 'none';
+        document.getElementById('cardsContainer').innerHTML = '';
+        selectedCountDisplay.textContent = '';
+    }
+
+    startReadingBtn.addEventListener('click', startReading);
+    questionInput.addEventListener('input', () => {
+        startReadingBtn.disabled = questionInput.value.trim().length < 5;
     });
-
-    return reading;
-}
-
-
-        function showReading() {
-            const reading = document.getElementById('reading');
-    reading.style.display = 'block';
-
-    const questionTypes = getQuestionType(userQuestion);
-    const selectedCards = Array.from(document.querySelectorAll('.card.flipped'))
-        .map(card => {
-            const index = Array.from(document.querySelectorAll('.card')).indexOf(card);
-            return shuffledCards[index]; // Corrección importante: usar el índice correcto
-        });
-
-    const personalizedReading = generatePersonalizedReading(selectedCards, questionTypes);
-
-    reading.innerHTML = `
-        <h2 style="color: #ffd700; text-align: center;">Tu Lectura del Tarot</h2>
-        <p style="font-size: 18px;">${personalizedReading}</p>
-        <div style="text-align: center;">
-            <button onclick="resetReading()">Nueva Consulta</button>
-        </div>
-    `;
-        }
-
-        function resetReading() {
-            questionInput.value = '';
-            userQuestion = '';
-            questionInput.disabled = false;
-            startReadingBtn.disabled = false;
-            document.getElementById('reading').style.display = 'none';
-            document.getElementById('cardsContainer').innerHTML = '';
-            selectedCountDisplay.textContent = '';
-        }
-
-        startReadingBtn.addEventListener('click', startReading);
-        questionInput.addEventListener('input', () => {
-            startReadingBtn.disabled = questionInput.value.trim().length < 5;
-        });
     </script>
 </body>
 </html>
